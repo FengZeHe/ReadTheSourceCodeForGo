@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"os"
-)
+import "fmt"
 
 func main() {
 	// todo 格式化输出
@@ -41,21 +37,31 @@ func main() {
 	//}
 	//log.Println(sscanfNum, s1, s2)
 
-	wd, _ := os.Getwd()
-	fmt.Println("当前工作目录:", wd)
-
-	file, err := os.Open("./fmtdemo/file.txt")
-	if err != nil {
-		log.Println(err)
-		panic(err)
-	}
-	defer file.Close()
-
-	var s1, s2 string
-	fmt.Fscanf(file, "%s %s", &s1, &s2)
-	fmt.Println("从file读取到:", s1, " ", s2)
+	//wd, _ := os.Getwd()
+	//fmt.Println("当前工作目录:", wd)
+	//
+	//file, err := os.Open("./fmtdemo/file.txt")
+	//if err != nil {
+	//	log.Println(err)
+	//	panic(err)
+	//}
+	//defer file.Close()
+	//
+	//var s1, s2 string
+	//fmt.Fscanf(file, "%s %s", &s1, &s2)
+	//fmt.Println("从file读取到:", s1, " ", s2)
 
 	// todo  格式化输出
+	name := "dawei"
+	fmt.Printf("hello %v \n", name)
+	fmt.Printf("%+v \n", name)
+	fmt.Printf("%#v \n", name)
+	fmt.Printf("%T \n", name)
 
-	// todo 错误格式化
+	fmt.Printf("%t \n", true)
+	fmt.Printf("保留2位小数: %.2f, 科学计数法: %e\n", 1.2345, 100000.0)
+
+	// todo 错误格式化,生成简单的错误
+	err := fmt.Errorf("error", 1234, 4321)
+	fmt.Println(err)
 }
