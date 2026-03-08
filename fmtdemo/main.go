@@ -1,9 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"os"
+)
+
+var (
+	CodeOne = errors.New("code1")
+	CodeTwo = errors.New("code2")
+)
 
 func main() {
-	// todo 格式化输出
+	// 格式化输出
 	//var name string
 	//var age int
 	//log.Println("请输入姓名跟年龄:")
@@ -51,17 +60,44 @@ func main() {
 	//fmt.Fscanf(file, "%s %s", &s1, &s2)
 	//fmt.Println("从file读取到:", s1, " ", s2)
 
-	// todo  格式化输出
-	name := "dawei"
-	fmt.Printf("hello %v \n", name)
-	fmt.Printf("%+v \n", name)
-	fmt.Printf("%#v \n", name)
-	fmt.Printf("%T \n", name)
+	// 格式化输出
+	//name := "dawei"
+	//fmt.Printf("hello %v \n", name)
+	//fmt.Printf("%+v \n", name)
+	//fmt.Printf("%#v \n", name)
+	//fmt.Printf("%T \n", name)
+	//
+	//fmt.Printf("%t \n", true)
+	//fmt.Printf("保留2位小数: %.2f, 科学计数法: %e\n", 1.2345, 100000.0)
 
-	fmt.Printf("%t \n", true)
-	fmt.Printf("保留2位小数: %.2f, 科学计数法: %e\n", 1.2345, 100000.0)
+	// 错误格式化,生成简单的错误
+	//code := 101
+	//err := fmt.Errorf("error: %d", code)
+	//fmt.Println(err)
+	//
+	//err2 := AddMsg()
+	//fmt.Println(err2)
 
-	// todo 错误格式化,生成简单的错误
-	err := fmt.Errorf("error", 1234, 4321)
-	fmt.Println(err)
+	err := addMsg()
+	if err != nil {
+		fmt.Println(err)
+
+		if errors.Is(err, os.ErrNotExist) {
+			fmt.Println("Error", err.Error())
+		}
+
+		var pathErr *os.PathError
+		if errors.As(err, &pathErr) {
+			fmt.Printf("操作:%s, 路径:%s, 底层错误=%v\n", pathErr.Op, pathErr.Path, pathErr.Err)
+		}
+	}
+
+}
+
+func addMsg() error {
+	_, err := os.Open("abc.txt")
+	if err != nil {
+		return fmt.Errorf("open abc.txt: %w", err)
+	}
+	return nil
 }
