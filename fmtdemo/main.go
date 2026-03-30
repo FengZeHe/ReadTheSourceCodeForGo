@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 func main() {
 	// todo 格式化输出
@@ -15,14 +18,14 @@ func main() {
 	//}
 	//log.Println("获取数量:", scanNum, "姓名:", name, "年龄:", age)
 
-	//var year, month, day int
-	//log.Println("请输入日期:")
-	//scanf_num, err := fmt.Scanf("%d-%d-%d", &year, &month, &day)
-	//if err != nil {
-	//	log.Println(err)
-	//	return
-	//}
-	//log.Println("获取数量", scanf_num, "年/月/日:", year, month, day)
+	var year, month, day int
+	log.Println("请输入日期(xxxx-xx-xx):")
+	scanf_num, err := fmt.Scanf("%d-%d-%d", &year, &month, &day)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	log.Println("获取数量", scanf_num, "年/月/日:", year, month, day)
 
 	//var str string
 	//log.Println("请输入一段话:")
@@ -46,22 +49,21 @@ func main() {
 	//	panic(err)
 	//}
 	//defer file.Close()
-	//
 	//var s1, s2 string
 	//fmt.Fscanf(file, "%s %s", &s1, &s2)
 	//fmt.Println("从file读取到:", s1, " ", s2)
 
 	// todo  格式化输出
-	name := "dawei"
-	fmt.Printf("hello %v \n", name)
-	fmt.Printf("%+v \n", name)
-	fmt.Printf("%#v \n", name)
-	fmt.Printf("%T \n", name)
-
-	fmt.Printf("%t \n", true)
-	fmt.Printf("保留2位小数: %.2f, 科学计数法: %e\n", 1.2345, 100000.0)
+	//name := "dawei"
+	//fmt.Printf("hello %v \n", name)
+	//fmt.Printf("%+v \n", name)
+	//fmt.Printf("%#v \n", name)
+	//fmt.Printf("%T \n", name)
+	//
+	//fmt.Printf("%t \n", true)
+	//fmt.Printf("保留2位小数: %.2f, 科学计数法: %e\n", 1.2345, 100000.0)
 
 	// todo 错误格式化,生成简单的错误
-	err := fmt.Errorf("error", 1234, 4321)
-	fmt.Println(err)
+	//err := fmt.Errorf("error", 1234, 4321)
+	//fmt.Println(err)
 }
